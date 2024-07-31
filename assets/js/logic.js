@@ -150,16 +150,16 @@ var loadScores = function () {
 
     // Convert scores from stringfield format into array
     savedScores = JSON.parse(savedScores); 
-    var initals = document.querySelector("#intials-field").ariaValueMax; 
+    var initals = document.querySelector("#initials-field").value; 
     var newScore = { 
         score: timeLeft, 
-        initals: initals
+        initials: initials
     }
     savedScores.push(newScore); 
     console.log(savedScores)
 
     savedScores.forEach(score => {
-        initialsField.innerText = score.initals
+        initialsField.innerText = score.initials
         scoreField.innerText = score.score
     })
 };
