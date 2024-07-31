@@ -1,0 +1,89 @@
+/* Normalize styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary-color: #cc6600;
+    --secondary-color: #ff9900;
+    --tertiary-color: #aaaaaa;
+    --white-color: #ffffff;
+    --correct-color: #6b8e23;
+  }
+
+  body {  
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.5;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .score a, 
+  .timer { 
+    font-size: 20px;
+  }
+
+  .scores a:hover {
+    color: var(--tertiary-color);
+  }
+
+  /*Start Quiz*/ 
+  .start-quiz { 
+    text-align: center;
+  }
+
+  h1 { 
+    margin-buttom: 10px; 
+  }
+
+  h2 { 
+    color: var(--tertiary-color);
+    border-top: 1px solid var(--tertiary-color);
+    margin: 20px 0;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /*Button*/
+  .btn-grid { 
+    display:grid;
+    grid-template-columns: repeat(2,auto);
+    gap:10px;
+    margin: 20px 0;
+  }
+
+  button {
+    font-family: Calibri, sans-serif;
+    border: none;
+    width: auto;
+    overflow: visible;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    font-size: large;
+    margin: 10px;
+    color: var(--white-color);
+    cursor: pointer;
+  }
+
+  button:hover{
+    background-color: var(--secondary-color);
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .btn.correct { 
+    background-color: var(--correct-color);
+  }
+
+  /*Wrapper for the buttons*/
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
