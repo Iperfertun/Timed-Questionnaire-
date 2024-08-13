@@ -1,4 +1,4 @@
-// start the question with a timer set to 75. timer left also will be the final score. 
+// Start the quiz with a timer set to 75. Timer left also will be the final score.
 var timeLeft = 75;
 var timerID;
 var timerEl = document.getElementById("timer");
@@ -10,7 +10,7 @@ var questionEl = document.getElementById("question");
 var answerButtonsEl = document.getElementById("answer-buttons");
 var checkAnswerEl = document.getElementById("check-answer");
 var viewHighScores = document.getElementById("highscores-link");
-var submitButton = document.getElementById("submit-btn"); 
+var submitButton = document.getElementById("submit-btn");
 var clearScoreButton = document.getElementById("clear-btn");
 var initialsField = document.getElementById("player-name");
 var restartButton = document.getElementById("restart-btn");
@@ -19,6 +19,7 @@ var scores = JSON.parse(localStorage.getItem("scores")) || [];
 
 var shuffledQuestions, currentQuestionIndex;
 
+
 // Start button trigger the first question and next button to display
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
@@ -26,7 +27,8 @@ nextButton.addEventListener("click", () => {
     setNextQuestion()
 });
 
-//Countdown Timer 
+
+// Countdown timer
 function timeTick() {
     timeLeft--;
     timerEl.textContent = "Time: " + timeLeft;
@@ -35,18 +37,20 @@ function timeTick() {
     }
 }
 
+
 // Start Quiz
 function startGame() {
     timerID = setInterval(timeTick, 1000);
     startContainerEl.classList.add("hide");
-    shuffledQuestions() = questions.sort(() => Math.random () - .5)
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEl.classList.remove("hide");
 
-    //Timer will start as soon as start button is clicked 
+    // Timer will start as soon as start button is clicked
     timeTick();
     setNextQuestion();
 };
+
 
 // Go to next question
 function setNextQuestion() {
@@ -54,7 +58,8 @@ function setNextQuestion() {
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 };
 
-//Display questions 
+
+// Display questions
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
@@ -69,6 +74,7 @@ function showQuestion(question) {
     })
 };
 
+
 // Reset state function
 function resetState() {
     //clearStatusClass(document.body)
@@ -80,24 +86,26 @@ function resetState() {
     }
 };
 
-  //Select answer function
+
+// Select answer function
 function selectAnswer(e) {
     var selectedButton = e.target;
     //console.dir(selectedButton);
     var correct = selectedButton.dataset.correct;
     checkAnswerEl.classList.remove("hide")
-    //Check if the answer correct or wrong then show text 
-    if(correct) { 
-        checkAnswerEl.innerHTML = "You got it right"; 
+    // Check if the answer correct or wrong then show text
+    if (correct) {
+        checkAnswerEl.innerHTML = "You got it right!";
     } else {
         checkAnswerEl.innerHTML = "Sorry that was not the correct answer.";
-        if (timerLeft <= 10) { 
+        if (timeLeft <= 10) {
             timeLeft = 0;
         } else {
-            // If the answer is wrong, deduct time by 10 
+            // If the aswer is wrong, deduct time by 10
             timeLeft -= 10;
         }
     }
+
     Array.from(answerButtonsEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
@@ -111,7 +119,8 @@ function selectAnswer(e) {
     }
 };
 
- //Check and show the correct answer by set the buttons colors 
+
+// Check and show the correct answer by set the buttons colors
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -121,7 +130,8 @@ function setStatusClass(element, correct) {
     }
 };
 
- //Remove all the classes
+
+// Remove all the classes
 function clearStatusClass(element) {
     element.classList.remove("correct");
     element.classList.remove("wrong");
@@ -151,7 +161,7 @@ var loadScores = function () {
 
     // Convert scores from stringfield format into array
     savedScores = JSON.parse(savedScores);
-    var initals = document.querySelector("#initials-field").value; 
+    var initials = document.querySelector("#initials-field").value;
     var newScore = {
         score: timeLeft,
         initials: initials
@@ -221,4 +231,3 @@ clearScoreButton.addEventListener("click", function () {
     localStorage.clear();
     document.getElementById("highscore").innerHTML = "";
 });
-
